@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive A350 Flight Deck</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+            background: #1c1d22; 
+            color: #e2e8f0; 
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 { color: #ffffff; margin-bottom: 5px; }
+        .subtitle { color: #94a3b8; margin-bottom: 25px; }
+
+        .cockpit-container { 
+            position: relative; 
+            display: inline-block; 
+            max-width: 100%;
+            border: 4px solid #2d3748;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 20px 35px -10px rgba(0,0,0,0.7);
+        }
+        img { max-width: 100%; height: auto; display: block; }
+
+        .panel-box {
+            position: absolute;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            text-decoration: none;
+        }
+        .panel-box:hover {
+            background: rgba(14, 165, 233, 0.2);
+            border-color: #0ea5e9;
+        }
+
+        /* Tooltip style */
+        .panel-box::after {
+            content: attr(title);
+            position: absolute;
+            bottom: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(15, 23, 42, 0.9);
+            color: #38bdf8;
+            font-size: 0.8em;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 4px;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.2s;
+            pointer-events: none;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+        }
+        .panel-box:hover::after { opacity: 1; }
+
+        /* Mapped Zones for the A350 Perspective */
+        #overhead-zone { 
+            top: 0%; 
+            left: 7%; 
+            width: 86%; 
+            height: 27%; 
+        }
+        #glareshield-main-zone { 
+            top: 38.5%; 
+            left: 0%; 
+            width: 100%; 
+            height: 25%; 
+        }
+        #pedestal-zone { 
+            top: 63.5%; 
+            left: 27%; 
+            width: 46%; 
+            height: 36.5%; 
+        }
+        #capt-lateral-zone { 
+            top: 56%; 
+            left: 0%; 
+            width: 25%; 
+            height: 44%; 
+        }
+        #fo-lateral-zone { 
+            top: 56%; 
+            left: 75%; 
+            width: 25%; 
+            height: 44%; 
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Airbus A350 Flight Deck</h1>
+    <p class="subtitle">Hover over a section to highlight it. Click to access system schematics.</p>
+
+    <div class="cockpit-container">
+        <img src="cockpit.jpg" alt="A350 Cockpit Overview">
+
+        <!-- Consolidated Interactive Hotspots -->
+        <a href="overhead.html" class="panel-box" id="overhead-zone" title="Overhead Panel"></a>
+        <a href="glareshield_main.html" class="panel-box" id="glareshield-main-zone" title="Glareshield & Main Display Panel"></a>
+        <a href="pedestal.html" class="panel-box" id="pedestal-zone" title="Pedestal Console (KCCU & Throttles)"></a>
+        <a href="captlateral.html" class="panel-box" id="capt-lateral-zone" title="Captain Lateral Console & Sidestick"></a>
+        <a href="folateral.html" class="panel-box" id="fo-lateral-zone" title="F/O Lateral Console & Sidestick"></a>
+    </div>
+
+</body>
+</html>
